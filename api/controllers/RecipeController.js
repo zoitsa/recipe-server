@@ -6,11 +6,11 @@
  */
 
 module.exports = {
-  createRecipe: function(req, res) {
+  createRecipe: (req, res) => {
     // Find the user that's adding a tutorial
     Category.findOne({
         id: req.session.categoryId
-    }).exec(function(err, foundCategory){
+    }).exec((err, foundCategory) => {
       if (err) return res.negotiate;
       if (!foundCategory) return res.notFound();
 
@@ -20,10 +20,9 @@ module.exports = {
         ingredients: req.param('ingredients'),
             owner: foundCategory.id,
       })
-      .exec(function(err, createdRecipe){
+      .exec((err, createdRecipe) => {
         if (err) return res.negotiate(err);
 
-        console.dir(res.json({id: createdRecipe.id}));
         return res.json({id: createdRecipe.id});
       });
     });
