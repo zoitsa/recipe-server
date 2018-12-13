@@ -9,7 +9,8 @@ module.exports = {
   createRecipe: (req, res) => {
     // Find the user that's adding a tutorial
     Category.findOne({
-        id: req.session.categoryId
+        id: req.session.categoryId,
+        id: req.session.subCategoryId
     }).exec((err, foundCategory) => {
       if (err) return res.negotiate;
       if (!foundCategory) return res.notFound();
