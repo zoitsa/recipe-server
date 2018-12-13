@@ -30,8 +30,8 @@ module.exports = {
       via: 'owner'
     },
     owner: {
-      model: 'category'
-    }
+        model: 'category'
+      }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
