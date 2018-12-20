@@ -21,7 +21,7 @@ module.exports = {
         type: 'string',
       },
       subCategories: {
-        collection: 'subCategory',
+        collection: 'subcategory',
         via: 'owner'
       },
 

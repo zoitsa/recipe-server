@@ -26,7 +26,7 @@ module.exports = {
         columnType: 'array'
       },
       owner: {
-        model: 'subCategory'
+        model: 'subcategory'
       }
       
 
