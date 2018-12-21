@@ -50,7 +50,7 @@ module.exports.datastores = {
     ***************************************************************************/
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
-
+    // url: `mysql://${process.env.DB_USER}@${process.env.DB_HOST}:3306/recipeapp`,
   },
 
 

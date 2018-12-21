@@ -1,3 +1,4 @@
+require('dotenv').config()
 /**
  * Production environment settings
  * (sails.config.*)
@@ -47,8 +48,8 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     default: {
-      // adapter: 'sails-mysql',
-      // url: 'mysql://user:password@host:port/database',
+      adapter: 'sails-mysql',
+      url: `mysql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:3306/recipes`,
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.
@@ -148,11 +149,12 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cors: {
-      // allowOrigins: [
-      //   'https://example.com',
-      // ]
+      allRoutes: true,
+      allowOrigins: '*',
+      allowCredentials: false,
+      allowRequestHeaders: 'Authorization, Content-Type',
+      allowResponseHeaders: 'Authorization, Content-Type'
     },
-
   },
 
 
@@ -326,6 +328,7 @@ module.exports = {
 
   },
 
+  port: 80,
 
 
   /**************************************************************************
@@ -337,7 +340,7 @@ module.exports = {
   * this, just try deploying without setting it and see if it works.)       *
   *                                                                         *
   ***************************************************************************/
-  // port: 80,
+ 
 
 
 
@@ -371,7 +374,7 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: 'https://example.com',
+    baseUrl: 'https://recipes-api.now.sh',
     internalEmailAddress: 'support@example.com',
 
     // mailgunDomain: 'mg.example.com',

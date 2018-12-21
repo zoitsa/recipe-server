@@ -1,52 +1,16 @@
 /**
- * Global Variable Configuration
- * (sails.config.globals)
- *
- * Configure which global variables which will be exposed
- * automatically by Sails.
- *
- * For more information on any of these options, check out:
- * https://sailsjs.com/config/globals
+ * THIS FILE WAS ADDED AUTOMATICALLY by the Sails 1.0 app migration tool.
+ * The original file was backed up as `config/globals-old.js.txt`
  */
 
-module.exports.globals = {
+ module.exports.globals = {
 
-  /****************************************************************************
-  *                                                                           *
-  * Whether to expose the locally-installed Lodash as a global variable       *
-  * (`_`), making  it accessible throughout your app.                         *
-  * (See the link above for help.)                                            *
-  *                                                                           *
-  ****************************************************************************/
+   _: require('lodash'),
 
-  _: require('@sailshq/lodash'),
+   async: require('async'),
 
-  /****************************************************************************
-  *                                                                           *
-  * Whether to expose the locally-installed `async` as a global variable      *
-  * (`async`), making it accessible throughout your app.                      *
-  * (See the link above for help.)                                            *
-  *                                                                           *
-  ****************************************************************************/
+   models: true,
 
-  async: require('async'),
+   sails: true
 
-  /****************************************************************************
-  *                                                                           *
-  * Whether to expose each of your app's models as global variables.          *
-  * (See the link at the top of this file for more information.)              *
-  *                                                                           *
-  ****************************************************************************/
-
-  models: true,
-
-  /****************************************************************************
-  *                                                                           *
-  * Whether to expose the Sails app instance as a global variable (`sails`),  *
-  * making it accessible throughout your app.                                 *
-  *                                                                           *
-  ****************************************************************************/
-
-  sails: true,
-
-};
+ };
