@@ -21,9 +21,14 @@ module.exports = {
         type: 'string'
       },
       ingredients: {
+        type: 'json',
         required: true,
-        type: 'json', 
-        columnType: 'array'
+        // type: 'json', 
+        // columnType: 'array'
+      },
+      photo: {
+        type: 'string',
+        defaultsTo: ''
       },
       owner: {
         model: 'subcategory'
