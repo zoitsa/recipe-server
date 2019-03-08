@@ -20,11 +20,17 @@ module.exports = {
         required: true,
         type: 'string'
       },
+      tag: {
+        required: true,
+        type: 'string'
+      },
       ingredients: {
         type: 'json',
         required: true,
-        // type: 'json', 
-        // columnType: 'array'
+      },
+      steps: {
+        type: 'json',
+        required: true,
       },
       photo: {
         type: 'string',
