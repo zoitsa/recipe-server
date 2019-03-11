@@ -48,7 +48,9 @@ module.exports = {
         name: req.param('name'),
         description: req.param('description'),
         ingredients: req.param('ingredients'),
+        steps: req.param('steps'),
         photo: req.param('photo'),
+        tag: req.param('tag'),
         owner: foundSubCategory.id,
       })
       .exec((err, createdRecipe) => {
