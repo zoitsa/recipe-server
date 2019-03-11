@@ -374,7 +374,7 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: 'https://recipes-api.now.sh',
+    baseUrl: 'https://recipe-server.now.sh',
     internalEmailAddress: 'support@example.com',
 
     // mailgunDomain: 'mg.example.com',

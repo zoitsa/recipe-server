@@ -1,5 +1,5 @@
 {
-    "alias": ["recipes-server.now.sh"],
+    "alias": ["recipe-server.now.sh"],
     "version": 1,
     "dotenv": true
   }
