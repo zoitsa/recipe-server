@@ -1,55 +1,38 @@
 /**
- * Recipe.js
+ * Steps.js
  *
- * @description :: A model definition.  Represents a database table/collection/etc.
+ * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
 module.exports = {
 
+  attributes: {
+
+    recipeStep: {
+      type: 'string'
+    },
+    completed: {
+      type: 'boolean'
+    },
+    recipe: {
+      model: 'recipe'
+    },
+
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-   
-    attributes: {
-      name: {
-        required: true,
-        type: 'string'
-      },
-      description: {
-        required: true,
-        type: 'string'
-      },
-      tag: {
-        required: true,
-        type: 'string'
-      },
-      ingredients: {
-        type: 'json',
-        required: true,
-      },
-      photo: {
-        type: 'string',
-        defaultsTo: ''
-      },
+
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
+
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    steps: {
-      collection: 'steps',
-      via: 'recipe'
-      // type: 'json',
-      // required: true,
-    },
-    owner: {
-      model: 'subcategory'
-    }
-    
+
   },
 
 };
