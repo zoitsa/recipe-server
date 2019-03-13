@@ -1,0 +1,5 @@
+{
+    "alias": ["recipe-server.now.sh"],
+    "version": 1,
+    "dotenv": true
+  }

@@ -20,15 +20,18 @@ module.exports = {
         required: true,
         type: 'string'
       },
-      ingredients: {
+      tag: {
         required: true,
-        type: 'json', 
-        columnType: 'array'
+        type: 'string'
       },
-      owner: {
-        model: 'subCategory'
-      }
-      
+      ingredients: {
+        type: 'json',
+        required: true,
+      },
+      photo: {
+        type: 'string',
+        defaultsTo: ''
+      },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -38,7 +41,15 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-
+    steps: {
+      collection: 'steps',
+      via: 'recipeOwner'
+    },
+      
+    owner: {
+      model: 'subcategory'
+    }
+    
   },
 
 };
