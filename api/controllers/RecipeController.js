@@ -7,16 +7,17 @@
 
 module.exports = {
   createRecipe: (req, res) => {
-    console.log('body');
-    console.log(req.body);
+    const steps = req.param('steps');
+    console.log(steps)
+    // console.log('body');
+    // console.log(req.body);
     // Find the user that's adding a tutorial
     SubCategory.findOne({
         id: req.param('ownerId')
     })
-    .fetch()
     .exec((err, foundSubCategory) => {
-      console.log('subCat');
-      console.log(foundSubCategory);
+      // console.log('subCat');
+      // console.log(foundSubCategory);
       if (err) return res.negotiate;
       if (!foundSubCategory) return res.notFound();
       Recipe.create({
@@ -30,25 +31,21 @@ module.exports = {
       })
       .fetch()
       .exec((err, createdRecipe) => {
-        console.log('createdRecipe')
-        console.log(createdRecipe);
+        console.log('createdRecipe', createdRecipe);
         if (err) return (err);
-        Recipe.update({
-          id: createdRecipe.id
-        })
-        .fetch()
-        .exec((err, recipe) => {
-          if (err) return (err)
-        })
-        Steps.create({
-          recipeStep: req.param('recipeStep'),
-        })
-        .exec((err, recipe) => {
-          if (err) return (err);
-          console.log(recipe);
-        })
-        
-        return res.json({id: createdRecipe.id});
+
+        for (let i = 0; i < steps.length; i++) {
+          Steps.create({
+            recipeStep: steps[i],
+            recipeOwner: createdRecipe.id
+          })
+          .fetch()
+          .exec((err, step) => {
+            if (err) return (err);
+          })
+        }
+        return res.json(200);
+
       });
     });
   },

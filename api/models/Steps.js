@@ -13,9 +13,10 @@ module.exports = {
       type: 'string'
     },
     completed: {
-      type: 'boolean'
+      type: 'boolean',
+      defaultsTo: false,
     },
-    recipe: {
+    recipeOwner: {
       model: 'recipe'
     },
 

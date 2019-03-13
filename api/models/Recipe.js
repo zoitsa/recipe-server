@@ -42,7 +42,7 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     steps: {
       collection: 'steps',
-      via: 'recipe'
+      via: 'recipeOwner'
       // type: 'json',
       // required: true,
     },
