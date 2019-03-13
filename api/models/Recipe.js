@@ -37,15 +37,15 @@ module.exports = {
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
+
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     steps: {
       collection: 'steps',
-      via: 'recipe'
-      // type: 'json',
-      // required: true,
+      via: 'recipeOwner'
     },
+      
     owner: {
       model: 'subcategory'
     }
