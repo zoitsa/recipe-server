@@ -21,12 +21,10 @@ module.exports = {
         type: 'string'
       },
       tag: {
-        required: true,
         type: 'string'
       },
       ingredients: {
         type: 'json',
-        required: true,
       },
       photo: {
         type: 'string',

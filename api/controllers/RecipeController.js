@@ -7,6 +7,7 @@
 
 module.exports = {
   createRecipe: (req, res) => {
+    console.log(req.body);
     // variable for steps posted in body of recipe
     const steps = req.param('steps');
 
