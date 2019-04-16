@@ -9,6 +9,7 @@
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
     "@sailshq/upgrade": "^1.0.9",
+    "@sentry/node": "^5.0.8",
     "async": "2.0.1",
     "dotenv": "^6.2.0",
     "grunt": "1.0.1",

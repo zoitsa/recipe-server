@@ -20,7 +20,7 @@ module.exports.http = {
   *                                                                           *
   ****************************************************************************/
 
-  middleware: {
+  // middleware: {
 
     /***************************************************************************
     *                                                                          *
@@ -28,17 +28,28 @@ module.exports.http = {
     * (This Sails app's routes are handled by the "router" middleware below.)  *
     *                                                                          *
     ***************************************************************************/
+  //  checkSentry: (function sentry(){
+  //     console.log('i am hit')
+  //     const Sentry = require('@sentry/node');
+  //     return Sentry.init({ dsn: 'https://9fb2cd86abec4320a5dd74a0d9bf4c59@sentry.io/1284380' });
+  //   })(),
 
-    // order: [
-    //   'cookieParser',
-    //   'session',
-    //   'bodyParser',
-    //   'compress',
-    //   'poweredBy',
-    //   'router',
-    //   'www',
-    //   'favicon',
-    // ],
+  //   testing: (function test(){
+  //     Sentry.captureException(new Error("This is my fake error message"));
+  //   })(),
+
+  //   order: [
+  //     'checkSentry',
+  //     'testing',
+  //     'cookieParser',
+  //     'session',
+  //     'bodyParser',
+  //     'compress',
+  //     'poweredBy',
+  //     'router',
+  //     'www',
+  //     'favicon',
+  //   ],
 
 
     /***************************************************************************
@@ -53,8 +64,7 @@ module.exports.http = {
     //   var skipper = require('skipper');
     //   var middlewareFn = skipper({ strict: true });
     //   return middlewareFn;
-    // })(),
+    // })()
 
-  },
-
+  // }
 };
