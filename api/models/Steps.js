@@ -8,7 +8,6 @@
 module.exports = {
 
   attributes: {
-
     recipeStep: {
       type: 'string'
     },
