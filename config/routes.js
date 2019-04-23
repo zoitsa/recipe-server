@@ -44,8 +44,6 @@ module.exports.routes = {
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
   'post /recipe/:ownerId': 'RecipeController.createRecipe',
-
-  'post /recipetwo/:ownerId': 'RecipeController.two',
   
   'get /subcategory/:ownerId': 'SubCategoryController.getSubCategoryDetails',
 
