@@ -46,6 +46,8 @@ module.exports.routes = {
   'post /recipe/:ownerId': 'RecipeController.createRecipe',
   
   'get /subcategory/:ownerId': 'SubCategoryController.getSubCategoryDetails',
+
+  'get /test': 'RecipeController.test'
   
 
 
