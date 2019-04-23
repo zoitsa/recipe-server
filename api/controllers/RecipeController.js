@@ -116,7 +116,7 @@ module.exports = {
 
       const stepArray = steps.map((step) => {
         return {
-          receipeStep: step,
+          recipeStep: step,
           recipeOwner: recipe.id
         }
       })
