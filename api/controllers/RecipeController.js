@@ -15,6 +15,7 @@ module.exports = {
   },
 
   createRecipe: async function (req, res) {
+    console.log('req.body: ', req.body)
     try {
       const steps = req.param('steps');
 
