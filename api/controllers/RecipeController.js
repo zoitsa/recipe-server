@@ -17,7 +17,7 @@ module.exports = {
   createRecipe: async function (req, res) {
     console.log('req.body: ', req.body)
     try {
-      const steps = req.param('steps');
+      let steps = req.param('steps') ? req.param('steps') : null;
 
       const subCategory = await SubCategory.findOne({
         id: req.param('ownerId')
@@ -50,16 +50,25 @@ module.exports = {
         owner: subCategory.id
       }).fetch()
 
-      const stepArray = steps.map((step) => {
-        return {
-          recipeStep: step,
-          recipeOwner: recipe.id
+      if (steps) {
+        if (typeof(steps) === 'string') {
+          let temp = steps;
+          steps = new Array;
+          steps.push(temp)
         }
-      })
+        const stepArray = steps.map((step) => {
+          return {
+            recipeStep: step,
+            recipeOwner: recipe.id
+          }
+        })
 
-      const createdSteps = await Steps.createEach(stepArray).fetch();
+        const createdSteps = stepArray.length === 1 ? await Steps.create(stepArray[0]).fetch() : await Steps.createEach(stepArray).fetch();
 
-      res.send({ recipe, createdSteps })
+        return res.send({ recipe, createdSteps })
+      }
+
+      res.send(recipe)
 
     } catch (err) {
       Sentry.captureException(err)
