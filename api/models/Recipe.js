@@ -21,7 +21,7 @@ module.exports = {
         type: 'string'
       },
       tag: {
-        type: 'string'
+        type: 'json',
       },
       ingredients: {
         type: 'json',
