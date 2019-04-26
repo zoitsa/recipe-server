@@ -30,7 +30,6 @@ module.exports = {
           s3params: { ACL: 'public-read'}
         },function (err, filesUploaded) {
           if (err) {
-            console.log('error in upload: ', err)
             reject(err)
           }
 
@@ -96,7 +95,6 @@ module.exports = {
           s3params: { ACL: 'public-read'}
         },function (err, filesUploaded) {
           if (err) {
-            console.log('error in upload: ', err)
             reject(err)
           }
           if(filesUploaded.length === 0) {
@@ -132,7 +130,7 @@ module.exports = {
       res.send(recipeUpdated)
     
     } catch(err) {
-      console.log(err)
+      Sentry.captureException(err)
       res.send(err)
     }
 
