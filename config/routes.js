@@ -47,6 +47,8 @@ module.exports.routes = {
   
   'get /subcategory/:ownerId': 'SubCategoryController.getSubCategoryDetails',
 
+  'post /photo/:recipeId' : 'RecipeController.photo',
+
   'get /test': 'RecipeController.test'
   
 

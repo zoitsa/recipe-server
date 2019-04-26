@@ -18,7 +18,6 @@ module.exports = {
     console.log('req.body: ', req.body)
     try {
       let steps = req.param('steps') ? req.param('steps') : null;
-
       const subCategory = await SubCategory.findOne({
         id: req.param('ownerId')
       })
@@ -35,17 +34,22 @@ module.exports = {
             console.log('error in upload: ', err)
             reject(err)
           }
+
+          if(filesUploaded.length === 0) {
+            console.log('in here!!!!!')
+            resolve(null)
+          }
           resolve(filesUploaded[0])
         })
       })
-
+  
       const result = await uploadPromise
 
       const recipe = await Recipe.create({
         name: req.param('name'),
         description: req.param('description'),
         ingredients: req.param('ingredients'),
-        photo: result.extra.Location,
+        photo: result !== null ? result.extra.Location : '',
         tag: req.param('tag'),
         owner: subCategory.id
       }).fetch()
@@ -74,6 +78,53 @@ module.exports = {
       Sentry.captureException(err)
       res.send(err);
     }
+  },
+
+  photo: async function (req, res) {
+    var promiseArray = []
+
+    for (let i=0; i<4; i++) {
+      let uploadPromise = new Promise((resolve, reject) => {
+        req.file('photo'+i).upload({
+          adapter: require('skipper-better-s3'),
+          key: process.env.KEY,
+          secret: process.env.SECRET,
+          bucket: process.env.BUCKET,
+          s3params: { ACL: 'public-read'}
+        },function (err, filesUploaded) {
+          if (err) {
+            console.log('error in upload: ', err)
+            reject(err)
+          }
+          if(filesUploaded.length === 0) {
+            console.log('in here!!!!!')
+            resolve()
+          } else {
+            resolve(filesUploaded[0].extra.Location)
+          }
+        })
+      })
+      promiseArray.push(uploadPromise)
+    }
+
+    try {
+
+      let result = await Promise.all(promiseArray)
+      const filterNull = result.filter(photo => photo !== undefined)
+
+      let recipeUpdated = await Recipe.update({
+        id: req.param('id')
+      }).set({
+        photo: JSON.stringify(filterNull)
+      }).fetch()
+
+      res.send(recipeUpdated)
+    
+    } catch(err) {
+      console.log(err)
+      res.send(err)
+    }
+
   }
 };
 
