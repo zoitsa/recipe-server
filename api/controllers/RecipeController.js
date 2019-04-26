@@ -52,6 +52,11 @@ module.exports = {
         owner: subCategory.id
       }).fetch()
 
+      
+      if (result !== null) {
+        recipe.photo = JSON.parse(recipe.photo)
+      }
+
       if (steps) {
         if (typeof(steps) === 'string') {
           let temp = steps;
@@ -123,6 +128,7 @@ module.exports = {
         photo: JSON.stringify(filterNull)
       }).fetch()
 
+      recipeUpdated[0].photo = JSON.parse(recipeUpdated[0].photo)
       res.send(recipeUpdated)
     
     } catch(err) {
