@@ -27,7 +27,7 @@ module.exports = {
         type: 'json',
       },
       photo: {
-        type: 'string',
+        type: 'json',
         defaultsTo: ''
       },
 

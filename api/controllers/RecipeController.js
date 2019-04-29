@@ -127,7 +127,7 @@ module.exports = {
       }).fetch()
 
       recipeUpdated[0].photo = JSON.parse(recipeUpdated[0].photo)
-      res.send(recipeUpdated)
+      res.send({updatedRecipe: recipeUpdated[0]})
     
     } catch(err) {
       Sentry.captureException(err)
