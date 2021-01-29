@@ -15,7 +15,6 @@ module.exports = {
   },
 
   createRecipe: async function (req, res) {
-    console.log('req.body: ', req.body)
     try {
       let steps = req.param('steps') ? req.param('steps') : null;
       const subCategory = await SubCategory.findOne({
@@ -31,12 +30,10 @@ module.exports = {
           s3params: { ACL: 'public-read'}
         },function (err, filesUploaded) {
           if (err) {
-            console.log('error in upload: ', err)
             reject(err)
           }
 
           if(filesUploaded.length === 0) {
-            console.log('in here!!!!!')
             resolve(null)
           }
           resolve(filesUploaded[0])
@@ -49,10 +46,15 @@ module.exports = {
         name: req.param('name'),
         description: req.param('description'),
         ingredients: req.param('ingredients'),
-        photo: result !== null ? result.extra.Location : '',
+        photo: result !== null ? JSON.stringify(new Array(result.extra.Location)) : '',
         tag: req.param('tag'),
         owner: subCategory.id
       }).fetch()
+
+      
+      if (result !== null) {
+        recipe.photo = JSON.parse(recipe.photo)
+      }
 
       if (steps) {
         if (typeof(steps) === 'string') {
@@ -93,11 +95,9 @@ module.exports = {
           s3params: { ACL: 'public-read'}
         },function (err, filesUploaded) {
           if (err) {
-            console.log('error in upload: ', err)
             reject(err)
           }
           if(filesUploaded.length === 0) {
-            console.log('in here!!!!!')
             resolve()
           } else {
             resolve(filesUploaded[0].extra.Location)
@@ -110,18 +110,27 @@ module.exports = {
     try {
 
       let result = await Promise.all(promiseArray)
+
       const filterNull = result.filter(photo => photo !== undefined)
 
+      let existing = await Recipe.find({ id: req.param('recipeId')})
+
+      if(existing[0].photo !== '') {
+        let existingPhoto = JSON.parse(existing[0].photo)
+        existingPhoto.forEach(item => filterNull.push(item))
+      }
+
       let recipeUpdated = await Recipe.update({
-        id: req.param('id')
+        id: req.param('recipeId')
       }).set({
         photo: JSON.stringify(filterNull)
       }).fetch()
 
-      res.send(recipeUpdated)
+      recipeUpdated[0].photo = JSON.parse(recipeUpdated[0].photo)
+      res.send({updatedRecipe: recipeUpdated[0]})
     
     } catch(err) {
-      console.log(err)
+      Sentry.captureException(err)
       res.send(err)
     }
 
